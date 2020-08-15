@@ -1,6 +1,8 @@
 package com.coohua.webview.webviewclient;
 
 import android.graphics.Bitmap;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -25,6 +27,14 @@ public class EnjoyWebViewClient extends WebViewClient {
     public void onPageFinished(WebView view, String url) {
         if (mWebViewCallback != null) {
             mWebViewCallback.pageFinished(url);
+        }
+    }
+
+    @Override
+    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+        super.onReceivedError(view, request, error);
+        if (mWebViewCallback != null) {
+            mWebViewCallback.onError();
         }
     }
 }

@@ -31,7 +31,7 @@ public class WebViewActivity extends AppCompatActivity {
         });
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment fragment = WebViewFragment.newInstance(getIntent().getStringExtra(Constants.URL));
+        Fragment fragment = WebViewFragment.newInstance(getIntent().getStringExtra(Constants.URL), true);
         transaction.replace(R.id.web_view_fragment, fragment).commit();
     }
 }
