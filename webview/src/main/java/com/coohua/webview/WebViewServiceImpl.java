@@ -4,7 +4,7 @@ package com.coohua.webview;
 import android.content.Context;
 import android.content.Intent;
 
-import com.coohua.common.autoservice.IWebViewService;
+import com.coohua.base.autoservice.IWebViewService;
 import com.coohua.webview.utils.Constants;
 import com.google.auto.service.AutoService;
 

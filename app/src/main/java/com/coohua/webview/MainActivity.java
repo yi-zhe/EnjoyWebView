@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.coohua.base.autoservice.CoohuaServiceLoader;
-import com.coohua.common.autoservice.IWebViewService;
+import com.coohua.base.autoservice.IWebViewService;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.coohua.common.autoservice;
+package com.coohua.base.autoservice;
 
 import android.content.Context;
 
