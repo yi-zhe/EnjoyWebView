@@ -34,4 +34,8 @@ public class WebViewActivity extends AppCompatActivity {
         Fragment fragment = WebViewFragment.newInstance(getIntent().getStringExtra(Constants.URL), true);
         transaction.replace(R.id.web_view_fragment, fragment).commit();
     }
+
+    public void updateTitle(String title) {
+        mBinding.title.setText(title);
+    }
 }

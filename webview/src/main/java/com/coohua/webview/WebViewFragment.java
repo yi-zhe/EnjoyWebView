@@ -14,6 +14,7 @@ import com.coohua.base.loadsir.ErrorCallback;
 import com.coohua.base.loadsir.LoadingCallback;
 import com.coohua.webview.databinding.FragmentWebviewBinding;
 import com.coohua.webview.utils.Constants;
+import com.coohua.webview.webchromeclient.EnjoyWebChromeClient;
 import com.coohua.webview.webviewclient.EnjoyWebViewClient;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
@@ -62,6 +63,7 @@ public class WebViewFragment extends Fragment implements WebViewCallback, OnRefr
             }
         });
         mBinding.webview.setWebViewClient(new EnjoyWebViewClient(this));
+        mBinding.webview.setWebChromeClient(new EnjoyWebChromeClient(this));
         mBinding.smartrefreshlayout.setOnRefreshListener(this);
         mBinding.smartrefreshlayout.setEnableAutoLoadMore(false);
         mBinding.smartrefreshlayout.setEnableRefresh(canNativeRefresh);
@@ -97,6 +99,13 @@ public class WebViewFragment extends Fragment implements WebViewCallback, OnRefr
     public void onError() {
         mIsError = true;
         mBinding.smartrefreshlayout.finishRefresh();
+    }
+
+    @Override
+    public void updateTitle(String title) {
+        if (getActivity() instanceof WebViewActivity) {
+            ((WebViewActivity) getActivity()).updateTitle(title);
+        }
     }
 
     @Override
