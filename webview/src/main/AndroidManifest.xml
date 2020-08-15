@@ -10,7 +10,6 @@
         tools:targetApi="m">
         <activity
             android:name=".WebViewActivity"
-            android:process="web"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 </manifest>
