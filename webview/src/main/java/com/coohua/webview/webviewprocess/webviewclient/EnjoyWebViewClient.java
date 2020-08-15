@@ -1,4 +1,4 @@
-package com.coohua.webview.webviewclient;
+package com.coohua.webview.webviewprocess.webviewclient;
 
 import android.graphics.Bitmap;
 import android.webkit.WebResourceError;

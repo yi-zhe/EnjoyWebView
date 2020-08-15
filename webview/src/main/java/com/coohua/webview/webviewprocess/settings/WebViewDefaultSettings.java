@@ -1,4 +1,4 @@
-package com.coohua.webview.settings;
+package com.coohua.webview.webviewprocess.settings;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

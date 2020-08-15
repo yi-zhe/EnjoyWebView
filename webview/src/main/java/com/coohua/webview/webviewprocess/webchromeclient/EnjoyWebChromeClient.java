@@ -1,5 +1,7 @@
-package com.coohua.webview.webchromeclient;
+package com.coohua.webview.webviewprocess.webchromeclient;
 
+import android.util.Log;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
@@ -19,5 +21,11 @@ public class EnjoyWebChromeClient extends WebChromeClient {
         if (mWebViewCallback != null) {
             mWebViewCallback.updateTitle(title);
         }
+    }
+
+    @Override
+    public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+        Log.d("Console", consoleMessage.message());
+        return super.onConsoleMessage(consoleMessage);
     }
 }

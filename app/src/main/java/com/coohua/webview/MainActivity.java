@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 IWebViewService webViewService = CoohuaServiceLoader.load(IWebViewService.class);
                 if (webViewService != null) {
-                    webViewService.startWebViewActivity(MainActivity.this, "https://www.baidu.com", "百度", true);
+                    webViewService.startDemoHtml(MainActivity.this);
                 }
             }
         });
