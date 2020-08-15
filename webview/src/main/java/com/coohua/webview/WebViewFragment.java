@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.coohua.base.loadsir.ErrorCallback;
 import com.coohua.base.loadsir.LoadingCallback;
 import com.coohua.webview.databinding.FragmentWebviewBinding;
+import com.coohua.webview.settings.WebViewDefaultSettings;
 import com.coohua.webview.utils.Constants;
 import com.coohua.webview.webchromeclient.EnjoyWebChromeClient;
 import com.coohua.webview.webviewclient.EnjoyWebViewClient;
@@ -53,7 +54,6 @@ public class WebViewFragment extends Fragment implements WebViewCallback, OnRefr
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_webview, container, false);
-        mBinding.webview.getSettings().setJavaScriptEnabled(true);
         mBinding.webview.loadUrl(mUrl);
         mLoadService = LoadSir.getDefault().register(mBinding.smartrefreshlayout, new Callback.OnReloadListener() {
             @Override
@@ -64,6 +64,7 @@ public class WebViewFragment extends Fragment implements WebViewCallback, OnRefr
         });
         mBinding.webview.setWebViewClient(new EnjoyWebViewClient(this));
         mBinding.webview.setWebChromeClient(new EnjoyWebChromeClient(this));
+        WebViewDefaultSettings.getInstance().setSettings(mBinding.webview);
         mBinding.smartrefreshlayout.setOnRefreshListener(this);
         mBinding.smartrefreshlayout.setEnableAutoLoadMore(false);
         mBinding.smartrefreshlayout.setEnableRefresh(canNativeRefresh);
