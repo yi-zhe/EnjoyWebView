@@ -9,6 +9,8 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -25,7 +27,7 @@ android {
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.androidXVersion"
-    implementation "$rootProject.googleAutoServiceDependency"
-    annotationProcessor "$rootProject.googleAutoServiceDependency"
-    api project(path: ':common')
+    annotationProcessor rootProject.googleAutoServiceDependency
+    implementation rootProject.googleAutoServiceDependency
+    api project(":common")
 }

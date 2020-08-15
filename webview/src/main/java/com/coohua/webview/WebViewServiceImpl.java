@@ -8,7 +8,7 @@ import com.coohua.common.autoservice.IWebViewService;
 import com.coohua.webview.utils.Constants;
 import com.google.auto.service.AutoService;
 
-@AutoService(IWebViewService.class)
+@AutoService({IWebViewService.class})
 public class WebViewServiceImpl implements IWebViewService {
 
     @Override
