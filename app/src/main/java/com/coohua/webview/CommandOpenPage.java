@@ -19,7 +19,7 @@ public class CommandOpenPage implements Command {
     }
 
     @Override
-    public void execute(Map params) {
+    public void execute(Map params, ICallbackFromMainProcessToWebViewProcessInterface c) {
         String targetClass = String.valueOf(params.get("target_class"));
         if (!TextUtils.isEmpty(targetClass)) {
             Intent intent = new Intent();

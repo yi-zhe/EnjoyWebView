@@ -6,6 +6,7 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 
 import com.coohua.base.BaseApplication;
+import com.coohua.webview.ICallbackFromMainProcessToWebViewProcessInterface;
 import com.coohua.webview.IWebViewProcessToMainProcessInterface;
 import com.coohua.webview.command.Command;
 import com.google.gson.Gson;
@@ -37,12 +38,12 @@ public class MainProcessCommandsManager extends IWebViewProcessToMainProcessInte
         }
     }
 
-    public void executeCommand(String commandName, Map params) {
-        mCommands.get(commandName).execute(params);
+    public void executeCommand(String commandName, Map params, ICallbackFromMainProcessToWebViewProcessInterface c) {
+        mCommands.get(commandName).execute(params, c);
     }
 
     @Override
-    public void handleWebCommand(String commandName, String jsonParams) throws RemoteException {
-        executeCommand(commandName, new Gson().fromJson(jsonParams, Map.class));
+    public void handleWebCommand(String commandName, String jsonParams, ICallbackFromMainProcessToWebViewProcessInterface ic) throws RemoteException {
+        executeCommand(commandName, new Gson().fromJson(jsonParams, Map.class), ic);
     }
 }

@@ -44,13 +44,25 @@ public class BaseWebView extends WebView {
     }
 
     @JavascriptInterface
-    public void takeNativeAction(final String jsParam) {
+    public void takeNativeActionWithCallback(final String jsParam) {
         Log.i("BaseWebView", jsParam);
         if (!TextUtils.isEmpty(jsParam)) {
             final JsParam jsParamObject = new Gson().fromJson(jsParam, JsParam.class);
             if (jsParamObject != null) {
-                WebViewProcessCommandDispatcher.getInstance().executeCommand(jsParamObject.name, new Gson().toJson(jsParamObject.param));
+                WebViewProcessCommandDispatcher.getInstance().executeCommand(jsParamObject.name, new Gson().toJson(jsParamObject.param), this);
             }
+        }
+    }
+
+    public void handleCallback(final String callbackname, final String response) {
+        if (!TextUtils.isEmpty(callbackname) && !TextUtils.isEmpty(response)) {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    String jscode = "javascript:xiangxuejs.callback('" + callbackname + "'," + response + ")";
+                    evaluateJavascript(jscode, null);
+                }
+            });
         }
     }
 }

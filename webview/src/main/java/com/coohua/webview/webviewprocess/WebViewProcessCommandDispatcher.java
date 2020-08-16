@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.webkit.WebView;
 
 import com.coohua.base.BaseApplication;
+import com.coohua.webview.ICallbackFromMainProcessToWebViewProcessInterface;
 import com.coohua.webview.IWebViewProcessToMainProcessInterface;
 import com.coohua.webview.mainprocess.MainProcessCommandService;
 
@@ -46,10 +48,20 @@ public class WebViewProcessCommandDispatcher implements ServiceConnection {
         initAidlConnection();
     }
 
-    public void executeCommand(String commandName, String params) {
+    public void executeCommand(String commandName, String params, WebView w) {
         if (iWebViewProcessToMainProcessInterface != null) {
             try {
-                iWebViewProcessToMainProcessInterface.handleWebCommand(commandName, params);
+                iWebViewProcessToMainProcessInterface.handleWebCommand(commandName, params, new ICallbackFromMainProcessToWebViewProcessInterface() {
+                    @Override
+                    public void onResult(String callbackName, String response) throws RemoteException {
+
+                    }
+
+                    @Override
+                    public IBinder asBinder() {
+                        return null;
+                    }
+                });
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

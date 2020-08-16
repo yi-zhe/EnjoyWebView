@@ -18,7 +18,7 @@ public class CommandShowToast implements Command {
     }
 
     @Override
-    public void execute(final Map params) {
+    public void execute(Map params, ICallbackFromMainProcessToWebViewProcessInterface c) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(() -> Toast.makeText(BaseApplication.sApplication, (String) params.get("message"), Toast.LENGTH_LONG).show());
     }

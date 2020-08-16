@@ -35,4 +35,5 @@ dependencies {
     annotationProcessor rootProject.googleAutoServiceDependency
     implementation rootProject.googleAutoServiceDependency
     implementation project(":webview")
+    implementation project(":usercenter")
 }

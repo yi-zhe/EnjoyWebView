@@ -29,6 +29,14 @@
             console.log("openActivityB.");
             xiangxuejs.takeNativeAction("openPage", {target_class: "com.coohua.webview.MainProcessTestActivity2"});
         }
+        function login(){
+            console.log("login.");
+            xiangxuejs.takeNativeAction("login", {}, function(res) {
+                var element = document.createElement("div");
+                element.appendChild(document.createTextNode("userName":+res.accountName));
+                document.getElementById('login_id').appendChild(element);
+            });
+        }
     </script>
     <script src="js/xiangxuejs.js" charset="utf-8"></script>
 </head>
@@ -36,5 +44,6 @@
 <div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppToast()">调用: showToast</div>
 <div class="item" style="font-size: 20px; color: #ffffff" onclick="openActivityA()">打开MainProcessTestActivity</div>
 <div class="item" style="font-size: 20px; color: #ffffff" onclick="openActivityB()">打开MainProcessTestActivity2</div>
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="login()">登录并返回结果</div>
 </body>
 </html>
