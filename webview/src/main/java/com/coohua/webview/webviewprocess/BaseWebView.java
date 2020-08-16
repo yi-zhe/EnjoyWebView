@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 import com.coohua.webview.WebViewCallback;
 import com.coohua.webview.bean.JsParam;
@@ -14,8 +13,6 @@ import com.coohua.webview.webviewprocess.settings.WebViewDefaultSettings;
 import com.coohua.webview.webviewprocess.webchromeclient.EnjoyWebChromeClient;
 import com.coohua.webview.webviewprocess.webviewclient.EnjoyWebViewClient;
 import com.google.gson.Gson;
-
-import java.util.Map;
 
 public class BaseWebView extends WebView {
     public BaseWebView(Context context) {
@@ -36,6 +33,7 @@ public class BaseWebView extends WebView {
     }
 
     public void init() {
+        WebViewProcessCommandDispatcher.getInstance().initAidlConnection();
         WebViewDefaultSettings.getInstance().setSettings(this);
     }
 
@@ -51,9 +49,7 @@ public class BaseWebView extends WebView {
         if (!TextUtils.isEmpty(jsParam)) {
             final JsParam jsParamObject = new Gson().fromJson(jsParam, JsParam.class);
             if (jsParamObject != null) {
-                if ("showToast".equalsIgnoreCase(jsParamObject.name)) {
-                    Toast.makeText(getContext(), String.valueOf(new Gson().fromJson(jsParamObject.param, Map.class).get("message")), Toast.LENGTH_LONG).show();
-                }
+                WebViewProcessCommandDispatcher.getInstance().executeCommand(jsParamObject.name, new Gson().toJson(jsParamObject.param));
             }
         }
     }
