@@ -1,11 +1,7 @@
 package com.coohua.webview.mainprocess;
 
-import android.content.ComponentName;
-import android.content.Intent;
 import android.os.RemoteException;
-import android.text.TextUtils;
 
-import com.coohua.base.BaseApplication;
 import com.coohua.webview.ICallbackFromMainProcessToWebViewProcessInterface;
 import com.coohua.webview.IWebViewProcessToMainProcessInterface;
 import com.coohua.webview.command.Command;

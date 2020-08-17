@@ -32,8 +32,9 @@ android {
 dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.androidXVersion"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    annotationProcessor rootProject.googleAutoServiceDependency
-    implementation rootProject.googleAutoServiceDependency
     implementation project(":webview")
     implementation project(":usercenter")
+
+    annotationProcessor rootProject.googleAutoServiceDependency
+    implementation rootProject.googleAutoServiceDependency
 }

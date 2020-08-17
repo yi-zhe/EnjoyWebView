@@ -44,7 +44,7 @@ public class BaseWebView extends WebView {
     }
 
     @JavascriptInterface
-    public void takeNativeActionWithCallback(final String jsParam) {
+    public void takeNativeAction(final String jsParam) {
         Log.i("BaseWebView", jsParam);
         if (!TextUtils.isEmpty(jsParam)) {
             final JsParam jsParamObject = new Gson().fromJson(jsParam, JsParam.class);

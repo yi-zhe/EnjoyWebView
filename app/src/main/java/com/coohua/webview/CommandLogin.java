@@ -1,10 +1,8 @@
 package com.coohua.webview;
 
-import android.content.Intent;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.coohua.base.BaseApplication;
 import com.coohua.base.autoservice.CoohuaServiceLoader;
 import com.coohua.base.autoservice.IUserCenterService;
 import com.coohua.common.eventbus.LoginEvent;

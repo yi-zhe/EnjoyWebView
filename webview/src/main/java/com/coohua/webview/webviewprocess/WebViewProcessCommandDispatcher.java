@@ -48,13 +48,13 @@ public class WebViewProcessCommandDispatcher implements ServiceConnection {
         initAidlConnection();
     }
 
-    public void executeCommand(String commandName, String params, WebView w) {
+    public void executeCommand(String commandName, String params, final BaseWebView w) {
         if (iWebViewProcessToMainProcessInterface != null) {
             try {
                 iWebViewProcessToMainProcessInterface.handleWebCommand(commandName, params, new ICallbackFromMainProcessToWebViewProcessInterface() {
                     @Override
                     public void onResult(String callbackName, String response) throws RemoteException {
-
+                        w.handleCallback(callbackName, response);
                     }
 
                     @Override
