@@ -37,7 +37,7 @@ public class CommandLogin implements Command {
         Log.d("CommandLogin", new Gson().toJson(params));
         iUserCenterService.login();
         this.callback = c;
-        callbacknameFromNativeJs = (String) params.get("callbackname");
+        callbacknameFromNativeJs = params.get("callbackname").toString();
     }
 
     @Subscribe

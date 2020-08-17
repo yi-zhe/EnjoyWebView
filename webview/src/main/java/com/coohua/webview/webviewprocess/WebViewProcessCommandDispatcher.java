@@ -51,15 +51,10 @@ public class WebViewProcessCommandDispatcher implements ServiceConnection {
     public void executeCommand(String commandName, String params, final BaseWebView w) {
         if (iWebViewProcessToMainProcessInterface != null) {
             try {
-                iWebViewProcessToMainProcessInterface.handleWebCommand(commandName, params, new ICallbackFromMainProcessToWebViewProcessInterface() {
+                iWebViewProcessToMainProcessInterface.handleWebCommand(commandName, params, new ICallbackFromMainProcessToWebViewProcessInterface.Stub() {
                     @Override
                     public void onResult(String callbackName, String response) throws RemoteException {
                         w.handleCallback(callbackName, response);
-                    }
-
-                    @Override
-                    public IBinder asBinder() {
-                        return null;
                     }
                 });
             } catch (RemoteException e) {
